@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE92B34C2535EAFE004FB30E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92B34B2535EAFE004FB30E /* Model.swift */; };
+		CE92B3512535EC38004FB30E /* PlayerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92B3502535EC38004FB30E /* PlayerViews.swift */; };
 		CEC122602535B19B00FE3DC4 /* TournamentManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1225F2535B19B00FE3DC4 /* TournamentManagerApp.swift */; };
 		CEC122622535B19B00FE3DC4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC122612535B19B00FE3DC4 /* ContentView.swift */; };
 		CEC122642535B19B00FE3DC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC122632535B19B00FE3DC4 /* Assets.xcassets */; };
@@ -33,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE92B34B2535EAFE004FB30E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		CE92B3502535EC38004FB30E /* PlayerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViews.swift; sourceTree = "<group>"; };
 		CEC1225C2535B19B00FE3DC4 /* TournamentManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TournamentManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC1225F2535B19B00FE3DC4 /* TournamentManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentManagerApp.swift; sourceTree = "<group>"; };
 		CEC122612535B19B00FE3DC4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 			children = (
 				CEC1225F2535B19B00FE3DC4 /* TournamentManagerApp.swift */,
 				CEC122612535B19B00FE3DC4 /* ContentView.swift */,
+				CE92B34B2535EAFE004FB30E /* Model.swift */,
+				CE92B3502535EC38004FB30E /* PlayerViews.swift */,
 				CEC122632535B19B00FE3DC4 /* Assets.xcassets */,
 				CEC122682535B19B00FE3DC4 /* Info.plist */,
 				CEC122652535B19B00FE3DC4 /* Preview Content */,
@@ -259,8 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE92B34C2535EAFE004FB30E /* Model.swift in Sources */,
 				CEC122622535B19B00FE3DC4 /* ContentView.swift in Sources */,
 				CEC122602535B19B00FE3DC4 /* TournamentManagerApp.swift in Sources */,
+				CE92B3512535EC38004FB30E /* PlayerViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +427,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"TournamentManager/Preview Content\"";
+				DEVELOPMENT_TEAM = W38788QLWT;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = TournamentManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -440,6 +449,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"TournamentManager/Preview Content\"";
+				DEVELOPMENT_TEAM = W38788QLWT;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = TournamentManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

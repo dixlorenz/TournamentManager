@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
+   @ObservedObject var data : TournamentData
+
+   var body: some View {
+      TabView {
+            PlayerList(data: self.data).padding().tabItem { Text("Players") }.tag(1)
+
+         Text("Tab Content 2").tabItem { Text("TextLabel 2") }.tag(2)
+      }
+   }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+   static var previews: some View {
+      ContentView(data: testData)
+   }
 }
+#endif

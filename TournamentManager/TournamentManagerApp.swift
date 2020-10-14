@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct TournamentManagerApp: App {
+   @StateObject private var data : TournamentData = testData//TournamentData()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(data: self.data)
         }
     }
 }
