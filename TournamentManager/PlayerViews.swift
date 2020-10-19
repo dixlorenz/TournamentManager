@@ -13,9 +13,9 @@ func ??<T>(lhs: Binding<Optional<T>>, rhs: T) -> Binding<T> {
       set: { lhs.wrappedValue = $0 }
    )
 }
-
+#if false
 struct PlayerList: View {
-   @ObservedObject var data : TournamentData = TournamentData()
+   @ObservedObject var data : Tournament = TournamentData()
 
    //@StateObject private var 
 
@@ -90,7 +90,7 @@ struct PlayerDetail : View {
 
 #if DEBUG
 struct PlayerViews_Previews: PreviewProvider {
-   @StateObject private static var data : TournamentData = testData
+   private static var data : Tournament = testTournament
 
    static var previews: some View {
       PlayerList(data:data)
@@ -98,4 +98,5 @@ struct PlayerViews_Previews: PreviewProvider {
          
    }
 }
+#endif
 #endif

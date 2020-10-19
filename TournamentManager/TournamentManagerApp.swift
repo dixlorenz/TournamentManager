@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct TournamentManagerApp: App {
-   @StateObject private var data : TournamentData = testData//TournamentData()
+   private var data : Tournament = testTournament
 
     var body: some Scene {
         WindowGroup {

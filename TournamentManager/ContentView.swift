@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-   @ObservedObject var data : TournamentData
+   var data : Tournament
 
    var body: some View {
       TabView {
-            PlayerList(data: self.data).padding().tabItem { Text("Players") }.tag(1)
+            //PlayerList(data: self.data).padding().tabItem { Text("Players") }.tag(1)
 
          Text("Tab Content 2").tabItem { Text("TextLabel 2") }.tag(2)
       }
@@ -22,7 +22,7 @@ struct ContentView: View {
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
    static var previews: some View {
-      ContentView(data: testData)
+      ContentView(data: testTournament)
    }
 }
 #endif
