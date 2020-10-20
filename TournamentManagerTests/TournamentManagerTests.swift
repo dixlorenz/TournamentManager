@@ -30,14 +30,14 @@ func make_stations(n: Int) -> [Station]
    return stations
 }
 
-func make_schedule(players: Int, stations: Int) -> [Round]
+func make_schedule(players: Int, stations: Int) -> Schedule
 {
       //let players = make_players(n: players)
       //let stations = make_stations(n: stations)
       
       let tournament = Tournament(players: roster, stations: station_list)
       
-      return tournament.schedule()!
+      return tournament.schedule()
 }
 
 class TournamentManagerTests: XCTestCase {
@@ -53,10 +53,8 @@ class TournamentManagerTests: XCTestCase {
     func testSchedule_1() throws {
       let schedule = make_schedule(players: 15, stations: 4)
       
-      for round in schedule {
-         round.display()
-      }
+      schedule.display()
 
-      XCTAssert(schedule.count == 2)
+      XCTAssert(schedule.rounds.count == 2)
     }
 }

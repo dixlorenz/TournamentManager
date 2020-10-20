@@ -38,7 +38,11 @@ struct Station {
 struct Match {
    var game : String
    var players: [Player] = []
-   
+
+   func fitness() -> Double {
+      return 1
+   }
+
    func display() {
       print(game, ": ", players.map { $0.display_name() })
    }
@@ -51,6 +55,10 @@ struct Match {
 
 struct SubRound {
    var matches : [Match] = []
+
+   func fitness() -> Double {
+      return matches.reduce(0.0, { $0 + $1.fitness() })
+   }
    
    func display() {
       for m in matches {
@@ -62,7 +70,11 @@ struct SubRound {
 struct Round {
    var number : Int
    var sub_rounds : [SubRound] = []
-   
+
+   func fitness() -> Double {
+      return sub_rounds.reduce(0.0, { $0 + $1.fitness() })
+   }
+
    func display() {
       print("Round", number)
       for sr in sub_rounds {
@@ -70,6 +82,20 @@ struct Round {
          sr.display()
       }
       print("--")
+   }
+}
+
+struct Schedule {
+   var rounds : [Round]
+   
+   func fitness() -> Double {
+      return rounds.reduce(0.0, { $0 + $1.fitness() })
+   }
+
+   func display() {
+      for round in rounds {
+         round.display()
+      }
    }
 }
 
@@ -85,29 +111,37 @@ struct Tournament {
       }
    }
    
-   func schedule() -> [Round]? {
-      var rounds: [Round] = []
-      
-      //   var group_size = max_group_size
-      //   while (group_size * stations.count) < players.count {
-      //      stations.append(stationPause)
-      //      group_size = group_size - 1
-      //   }
-      //
-      //   var active_stations = players.count / stations.count
-      //   if (active_stations * stations.count) < players.count {
-      //      active_stations += 1
-      //   }
+   func make_schedule() -> Schedule {
+      var schedule = Schedule(rounds: [])
       
       for round_number in 1...games_per_station {
          var round = schedule_round(number: round_number)
+
+         var fails = 0
+      
          while round == nil {
+            fails = fails + 1
+
             round = schedule_round(number: round_number)
          }
-         rounds.append(round!)
+         
+         if fails > 0 {
+            print("\(fails) fails")
+         }
+         schedule.rounds.append(round!)
       }
       
-      return rounds
+      return schedule
+   }
+   
+   func schedule() -> Schedule {
+      var schedules: [Schedule] = []
+      
+      //for _ in 0...256 {
+         schedules.append(make_schedule())
+      //}
+      
+      return schedules.max(by: { $0.fitness() < $1.fitness() } )!
    }
    
    func schedule_round(number: Int) -> Round? {
@@ -123,7 +157,11 @@ struct Tournament {
          {(p: Player) -> (player: Player, missing: Set<Int>) in
             return (p, stations_bucket)
          })
-
+      
+      var dark_station : Int?
+      
+      dark_station = stations.count - 1
+      
       while assignments_needed > 0 {
          // new subround
          var current_station = 0
@@ -134,6 +172,12 @@ struct Tournament {
          var x = 0
          
          while !available_players.isEmpty {
+            if let dark = dark_station {
+               if dark == current_station {
+                  current_station = (current_station + 1) % stations.count
+                  continue
+               }
+            }
             if matches[current_station].players.count < max_group_size {
                let player_idx = Int.random(in: 0..<players.count)
                var assigned_station = false
@@ -162,15 +206,21 @@ struct Tournament {
          var max_size = 0
          
          for m in matches {
-            min_size = min(min_size, m.players.count)
+            if m.players.count > 0 {
+               min_size = min(min_size, m.players.count)
+            }
             max_size = max(max_size, m.players.count)
          }
          
          if (max_size - min_size) > 1 {
             return nil
          }
-
+         
          round.sub_rounds.append(SubRound(matches: matches))
+         
+         if let dark = dark_station {
+            dark_station = (dark + 1) % stations.count
+         }
       }
       
       
