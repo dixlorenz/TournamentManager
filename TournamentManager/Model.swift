@@ -126,7 +126,7 @@ struct Tournament {
          }
          
          if fails > 0 {
-            print("\(fails) fails")
+            //print("\(fails) fails")
          }
          schedule.rounds.append(round!)
       }
